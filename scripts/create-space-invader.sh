@@ -16,7 +16,7 @@ function print_banner() {
 
 if [ "$#" -lt 1 ]; then
     print_banner
-    echo -e "\nUse: $0 'DD/MM/YYYY'\n"
+    echo -e "\nUse: $0 'MM/DD/YYYY'\n\nNote: The date must be a Sunday"
     exit
 fi
 
