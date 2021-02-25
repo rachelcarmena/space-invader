@@ -16,7 +16,7 @@ function print_banner() {
 
 if [ "$#" -lt 1 ]; then
     print_banner
-    echo -e "\nUse: $0 'MM/DD/YYYY'\n\nNote: The date must be a Sunday"
+    echo -e "\nUse: $0 'YYYY-MM-DD'\n\nNote: The date must be a Sunday"
     exit
 fi
 
@@ -42,7 +42,7 @@ do
         echo "Commit for index: $index" >> commits.log
         git add commits.log
         git commit -m "Message for index $index"
-        git commit --amend --no-edit --date="$(date --date="$INITIAL_DATE + $index day" -R)"
+        git commit --amend --no-edit --date="$(date -v+${index}d -jf "%Y-%m-%d" "$INITIAL_DATE" +"%Y-%m-%d 00:00:00")"
     fi
 done
 echo -e "\nDone!! Ready to push!!"
